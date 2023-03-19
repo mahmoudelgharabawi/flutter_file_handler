@@ -8,7 +8,7 @@ class FileViewWidget extends StatefulWidget {
       {Key? key,
       this.isImage = false,
       required this.data,
-      this.btnColor = Colors.purple})
+      this.btnColor = Colors.blue})
       : super(key: key);
 
   @override

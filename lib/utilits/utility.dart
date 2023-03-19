@@ -50,7 +50,7 @@ class Utilities {
                             minWidth: 100.0,
                             height: 60.0,
                             child: MaterialButton(
-                              color: Colors.purple,
+                              color: Theme.of(context).primaryColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       new BorderRadius.circular(50.0)),

@@ -1,6 +1,6 @@
 part of flutter_file_handler;
 
-class FileViewUtilis {
+class FileViewUtils {
   static Future<void> viewFile(
       UploadData data, BuildContext context, Color btnColor) async {
     if (data.url != null) {

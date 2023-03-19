@@ -4,11 +4,14 @@ class FileViewWidget extends StatefulWidget {
   final UploadData data;
   final bool isImage;
   final Color? btnColor;
+  final String accessToken;
+
   const FileViewWidget(
       {Key? key,
       this.isImage = false,
       required this.data,
-      this.btnColor = Colors.blue})
+      this.btnColor = Colors.blue,
+      this.accessToken = ''})
       : super(key: key);
 
   @override
@@ -60,22 +63,56 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                 height: 40,
                 child: ElevatedButton(
                     onPressed: () async {
-                      var result = await Utilities.confirmMessage(
-                          context, 'Download File ?');
-                      if (result) {
-                        if (widget.data.url!.startsWith('https')) {
-                          if (await canLaunchUrl(Uri.parse(widget.data.url!))) {
-                            await launchUrl(Uri.parse(widget.data.url!));
-                          }
-                        }
+                      debugPrint('download button pressed');
+                      WidgetsFlutterBinding.ensureInitialized();
+                      try {
+                        Directory appDocDirectory =
+                            await getApplicationDocumentsDirectory();
+
+                        final downloaderUtils = DownloaderUtils(
+                          progressCallback: (current, total) {
+                            final progress = (current / total) * 100;
+                            debugPrint('Downloading: $progress');
+                          },
+                          file: File(
+                              '${appDocDirectory.path}/${widget.data.name}'),
+                          progress: ProgressImplementation(),
+                          onDone: () {
+                            debugPrint('Download done');
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Download '
+                                  'Completed'),
+                              backgroundColor: Colors.green,
+                            ));
+                          },
+                          deleteOnCancel: true,
+                          accessToken: 'Bearer ${widget.accessToken}',
+                        );
+                        debugPrint(
+                            '${appDocDirectory.path}/${widget.data.name}');
+                        final core = await Flowder.download(
+                            widget.data.url!, downloaderUtils);
+                      } catch (e, st) {
+                        debugPrint("$e");
+                        debugPrint("$st");
                       }
+                      // var result = await Utilities.confirmMessage(
+                      //     context, 'Download File ?');
+                      // if (result) {
+                      //   if (widget.data.url!.startsWith('https')) {
+                      //     if (await canLaunchUrl(Uri.parse(widget.data.url!))) {
+                      //       await launchUrl(Uri.parse(widget.data.url!));
+                      //     }
+                      //   }
+                      // }
                     },
-                    child: const Icon(Icons.download),
                     style: ElevatedButton.styleFrom(
                       primary: widget.btnColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                    )),
+                    ),
+                    child: const Icon(Icons.download)),
               ),
             ],
           ),

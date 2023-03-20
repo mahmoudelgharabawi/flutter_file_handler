@@ -12,7 +12,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flowder/flowder.dart';
+import 'package:flowder_ex/flowder_ex.dart';
 
 part 'src/flutter_file_utility.dart';
 

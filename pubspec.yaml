@@ -1,6 +1,6 @@
 name: flutter_file_handler
 description: A simple flutter package to handle view netwotk files.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/mahmoudelgharabawi/flutter_file_handler
 
 environment:
@@ -17,8 +17,6 @@ dependencies:
   url_launcher: ^6.1.11
   path_provider: ^2.0.15
   flowder_ex: ^0.2.1
-
-
 
 dev_dependencies:
   flutter_test:

@@ -7,5 +7,4 @@ simple flutter package to handle view netwotk files
 Add the following to your `pubspec.yaml` file:
 
     dependencies:
-        flutter_file_handler: ^0.0.1
-
+        flutter_file_handler: ^0.0.5

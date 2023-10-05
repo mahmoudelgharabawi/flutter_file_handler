@@ -1,8 +1,8 @@
 part of flutter_file_handler;
 
 class FileViewUtils {
-  static Future<void> viewFile(
-      UploadData data, BuildContext context, Color btnColor) async {
+  static Future<void> viewFile(UploadData data, BuildContext context,
+      Color btnColor, MimeTypeEx mimeTypeEx) async {
     if (data.url != null) {
       if (data.url!.contains('jpg') ||
           data.url!.contains('png') ||
@@ -11,6 +11,7 @@ class FileViewUtils {
             context,
             MaterialPageRoute(
               builder: (_) => FileViewWidget(
+                mimeType: mimeTypeEx,
                 data: data,
                 isImage: true,
                 btnColor: btnColor,
@@ -21,6 +22,7 @@ class FileViewUtils {
             context,
             MaterialPageRoute(
               builder: (_) => FileViewWidget(
+                mimeType: mimeTypeEx,
                 data: data,
                 btnColor: btnColor,
               ),

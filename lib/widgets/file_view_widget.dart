@@ -77,7 +77,7 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                     onPressed: () => Navigator.pop(context),
                     child: const Icon(Icons.close),
                     style: ElevatedButton.styleFrom(
-                      primary: widget.btnColor,
+                      backgroundColor: widget.btnColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     )),
@@ -91,7 +91,7 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                         ),
                     child: Icon(Icons.share),
                     style: ElevatedButton.styleFrom(
-                      primary: widget.btnColor,
+                      backgroundColor: widget.btnColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     )),
@@ -106,7 +106,7 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                       await onDownloadClicked();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: widget.btnColor,
+                      backgroundColor: widget.btnColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),

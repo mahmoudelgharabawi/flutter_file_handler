@@ -1,6 +1,6 @@
 name: flutter_file_handler
 description: A simple flutter package to handle view network files.
-version: 0.0.12
+version: 0.0.13
 homepage: https://github.com/mahmoudelgharabawi/flutter_file_handler
 
 environment:

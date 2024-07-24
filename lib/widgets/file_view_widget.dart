@@ -80,7 +80,6 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                     child: const Icon(Icons.close),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: widget.btnColor,
-
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     )),
@@ -120,12 +119,8 @@ class _FileViewWidgetState extends State<FileViewWidget> {
         ),
         widget.isVideo
             ? Expanded(
-                child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: VideoBox(
-                    controller: VideoController(
-                        source: VideoPlayerController.networkUrl(
-                            Uri.parse(widget.data.url ?? '')))),
+                child: VideoBoxWidget(
+                url: widget.data.url ?? '',
               ))
             : widget.isImage
                 ? Expanded(

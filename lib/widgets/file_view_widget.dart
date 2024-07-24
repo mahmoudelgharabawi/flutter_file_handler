@@ -3,6 +3,7 @@ part of flutter_file_handler;
 class FileViewWidget extends StatefulWidget {
   final UploadData data;
   final bool isImage;
+  final bool isVideo;
   final Color? btnColor;
   final String accessToken;
   final MimeTypeEx mimeType;
@@ -10,6 +11,7 @@ class FileViewWidget extends StatefulWidget {
   const FileViewWidget(
       {Key? key,
       this.isImage = false,
+      this.isVideo = false,
       required this.data,
       required this.mimeType,
       this.btnColor = Colors.blue,
@@ -115,19 +117,29 @@ class _FileViewWidgetState extends State<FileViewWidget> {
             ],
           ),
         ),
-        widget.isImage
+        widget.isVideo
             ? Expanded(
-                child: CachedNetworkImage(
-                  imageUrl: widget.data.url ?? '',
-                  imageBuilder: (context, imageProvider) => PhotoView(
-                    imageProvider: imageProvider,
-                  ),
-                  placeholder: (context, url) =>
-                      const Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
-              )
-            : Expanded(child: SfPdfViewer.network(widget.data.url ?? '')),
+                child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: VideoBox(
+                    controller: VideoController(
+                        source: VideoPlayerController.networkUrl(
+                            Uri.parse(widget.data.url ?? '')))),
+              ))
+            : widget.isImage
+                ? Expanded(
+                    child: CachedNetworkImage(
+                      imageUrl: widget.data.url ?? '',
+                      imageBuilder: (context, imageProvider) => PhotoView(
+                        imageProvider: imageProvider,
+                      ),
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  )
+                : Expanded(child: SfPdfViewer.network(widget.data.url ?? '')),
       ],
     )));
   }

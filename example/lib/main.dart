@@ -46,14 +46,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
                 onPressed: () {
                   UploadData data = UploadData(
-                      url: 'https://via.placeholder.com/600/92c952',
+                      url:
+                          'https://ik.imagekit.io/wa00oveva//o/reels%2F202462921144434150-hd_1080_1920_30fps.mp4?alt=media&token=f2870ba2-9211-46e1-b115-4fa87df2405f',
                       name: 'test');
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (_) => FileViewWidget(
-                              mimeType: MimeTypeEx.png,
-                              isImage: true,
+                              mimeType: MimeTypeEx.avi,
+                              isVideo: true,
                               data: data,
                               btnColor: Colors.red)));
 

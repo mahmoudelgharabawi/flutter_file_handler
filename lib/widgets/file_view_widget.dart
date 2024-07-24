@@ -79,7 +79,8 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                     onPressed: () => Navigator.pop(context),
                     child: const Icon(Icons.close),
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: widget.btnColor,
+                      backgroundColor: widget.btnColor,
+
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     )),

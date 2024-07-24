@@ -15,7 +15,7 @@ class Utilities {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           color: Colors.white,
-          child: Container(
+          child: SizedBox(
               width: !kIsWeb ? 320.0 : 600,
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -28,15 +28,17 @@ class Utilities {
                     ),
                     Text(
                       title,
-                      style: TextStyle(fontSize: 25.0, color: Colors.black),
+                      style:
+                          const TextStyle(fontSize: 25.0, color: Colors.black),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 20.0),
                     message != null
                         ? Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
                             child: Text(message,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 18.0, color: Colors.black45),
                                 textAlign: TextAlign.center,
                                 softWrap: true,
@@ -52,10 +54,9 @@ class Utilities {
                             child: MaterialButton(
                               color: Theme.of(context).primaryColor,
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(50.0)),
+                                  borderRadius: BorderRadius.circular(50.0)),
                               onPressed: () => Navigator.of(_).pop(true),
-                              child: Text('Yes',
+                              child: const Text('Yes',
                                   style: TextStyle(color: Colors.white)),
                             )),
                         const SizedBox(width: 15.0),
@@ -64,11 +65,10 @@ class Utilities {
                             height: 60.0,
                             child: MaterialButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(50.0)),
+                                  borderRadius: BorderRadius.circular(50.0)),
                               color: Colors.white,
                               onPressed: () => Navigator.of(_).pop(false),
-                              child: Text('No',
+                              child: const Text('No',
                                   style: TextStyle(color: Colors.red)),
                             ))
                       ],

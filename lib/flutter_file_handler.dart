@@ -14,6 +14,7 @@ import 'dart:io' show Platform;
 import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:video_box/video_box.dart';
 
 part 'src/flutter_file_utility.dart';
 

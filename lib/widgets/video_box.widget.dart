@@ -15,10 +15,11 @@ class VideoBoxWidget extends StatefulWidget {
 }
 
 class _VideoBoxWidgetState extends State<VideoBoxWidget> {
-  late VideoController vc;
+  VideoController? vc;
 
   @override
   void initState() {
+    init();
     super.initState();
   }
 
@@ -60,19 +61,25 @@ class _VideoBoxWidgetState extends State<VideoBoxWidget> {
           }
         });
     }
+    setState(() {});
   }
 
   @override
   void dispose() {
-    vc.dispose();
+    vc?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: VideoBox(controller: vc),
-    );
+    return vc == null
+        ? Container(
+            color: Colors.black,
+            child: const Center(child: CircularProgressIndicator()),
+          )
+        : AspectRatio(
+            aspectRatio: 16 / 9,
+            child: VideoBox(controller: vc!),
+          );
   }
 }

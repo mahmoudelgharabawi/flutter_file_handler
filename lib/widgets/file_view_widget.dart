@@ -6,11 +6,13 @@ class FileViewWidget extends StatefulWidget {
   final bool isVideo;
   final Color? btnColor;
   final String accessToken;
+  final bool shareFiles;
   final MimeTypeEx mimeType;
 
   const FileViewWidget(
       {Key? key,
       this.isImage = false,
+      this.shareFiles = false,
       this.isVideo = false,
       required this.data,
       required this.mimeType,
@@ -88,9 +90,15 @@ class _FileViewWidgetState extends State<FileViewWidget> {
               SizedBox(
                 height: 40,
                 child: ElevatedButton(
-                    onPressed: () => Share.share(
+                    onPressed: () async {
+                      if (widget.shareFiles) {
+                        await onShareFiles(widget.data.url!);
+                      } else {
+                        Share.share(
                           widget.data.url!,
-                        ),
+                        );
+                      }
+                    },
                     child: Icon(Icons.share),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: widget.btnColor,
@@ -138,6 +146,35 @@ class _FileViewWidgetState extends State<FileViewWidget> {
                 : Expanded(child: SfPdfViewer.network(widget.data.url ?? '')),
       ],
     )));
+  }
+
+  Future<void> onShareFiles(String url) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    if (kIsWeb) return;
+
+    try {
+      // Get the temporary directory
+      final tempDir = await getTemporaryDirectory();
+      final fileName = url.split('/').last; // Extract file name from URL
+      final filePath = '${tempDir.path}/$fileName';
+
+      // Download the file
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final file = File(filePath);
+        await file.writeAsBytes(response.bodyBytes);
+
+        // Share the file
+        await Share.shareXFiles(
+          [XFile(filePath)],
+          text: 'Check out this file!',
+        );
+      } else {
+        print('Failed to download file: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error sharing file: $e');
+    }
   }
 
   Future<void> onDownloadClicked() async {

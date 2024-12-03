@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_handler/utilits/mime_types_ex.dart';
 import 'package:flutter_file_handler/widgets/video_box.widget.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 // import 'package:flutter_file_handler/models/upload_data.dart';
@@ -16,6 +17,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:video_box/video_box.dart';
+import 'package:http/http.dart' as http;
 
 part 'src/flutter_file_utility.dart';
 
